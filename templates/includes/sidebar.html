@@ -20,10 +20,14 @@
                   <span class="nav-link{% if app_label != app.label and app.url not in request.path|urlencode  %} collapsed{% endif %} d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-{{ app.app_label }}">
                     <span class="d-flex justify-content-between align-items-center">
                       <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <span class="sidebar-icon {{ app.icon }}"></span>
+                        {% if app.icon %}
+                          <span class="sidebar-icon {{ app.icon }}"></span>
+                        {% else %}
+                          <span class="sidebar-icon fa fa-tasks"></span>
+                        {% endif %}
                       </div>
                       <a href="{{ app.url }}">
-                        <span class="nav-link-text ms-1">{{ app.label|slice:10 }}{% if app.label|length > 10 %}..{% endif %}</span>
+                        <span class="nav-link-text ms-1">{{ app.label|slice:20 }}{% if app.label|length > 20 %} .. {% endif %}</span>
                       </a>
                     </span>
                   </span>

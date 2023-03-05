@@ -36,6 +36,12 @@ class Subscription(DatedModel):
 
     def owning_entity(self):
         return Company.objects.get(ref=self.ref) if not self.is_individual() else None
+    
+    owner = property(owning_entity)
+    
+    def __str__(self):
+        return f"for {self.package}"
+    
 
 
 class Company(DatedModel):
